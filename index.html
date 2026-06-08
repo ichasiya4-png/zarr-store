@@ -1,1 +1,424 @@
-qN5kGmQE+j4WZfhYZqdYCmv7LzJ9BIpqNcW72JHV/UOn+83y6dAgkXigTfGKIrUxwY2M+pV0c4H1wpkVgR0D8XhyByGBkR/3KZ8YY75k+II=
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZARR STORE</title>
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding: 20px 15px;
+            margin: 0;
+        }
+        h1 {
+            color: #008cff;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(0, 140, 255, 0.5);
+        }
+        .slogan {
+            color: #ffcc00;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .form-topup {
+            background: #161616;
+            border: 1px solid #2c2c2c;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .form-topup h3 {
+            margin: 0 0 15px 0;
+            color: #008cff;
+            border-bottom: 1px solid #2c2c2c;
+            padding-bottom: 8px;
+        }
+        .input-grup {
+            margin-bottom: 15px;
+        }
+        .input-grup label {
+            display: block;
+            font-size: 0.85rem;
+            color: #cccccc;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-grup input, .input-grup select {
+            width: 100%;
+            padding: 10px;
+            background-color: #222222;
+            border: 1px solid #444444;
+            color: #ffffff;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+        }
+        .input-grup input:focus, .input-grup select:focus {
+            border-color: #008cff;
+            outline: none;
+        }
+        .tombol-order {
+            width: 100%;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .tombol-order:hover {
+            background-color: #128C7E;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>ZARR STORE</h1>
+        <p class="slogan">⚡ MEGA MALL TOP UP GAME & DIGITAL CENTER ⚡</p>
+
+        <div class="form-topup">
+            <h3>🔥 FREE FIRE (FULL NOMINAL)</h3>
+            <div class="input-grup">
+                <label>User ID Game</label>
+                <input type="number" id="id_ff" placeholder="Masukkan ID Game" required>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Nominal Diamond</label>
+                <select id="nominal_ff">
+                    <option value="5 Diamonds (Rp 1.000)">5 Diamonds - Rp 1.000</option>
+                    <option value="12 Diamonds (Rp 2.000)">12 Diamonds - Rp 2.000</option>
+                    <option value="50 Diamonds (Rp 7.500)">50 Diamonds - Rp 7.500</option>
+                    <option value="70 Diamonds (Rp 10.000)">70 Diamonds - Rp 10.000</option>
+                    <option value="140 Diamonds (Rp 19.000)">140 Diamonds - Rp 19.000</option>
+                    <option value="210 Diamonds (Rp 28.000)">210 Diamonds - Rp 28.000</option>
+                    <option value="355 Diamonds (Rp 47.000)">355 Diamonds - Rp 47.000</option>
+                    <option value="500 Diamonds (Rp 66.000)">500 Diamonds - Rp 66.000</option>
+                    <option value="720 Diamonds (Rp 93.000)">720 Diamonds - Rp 93.000</option>
+                    <option value="1000 Diamonds (Rp 130.000)">1000 Diamonds - Rp 130.000</option>
+                    <option value="1450 Diamonds (Rp 185.000)">1450 Diamonds - Rp 185.000</option>
+                    <option value="2180 Diamonds (Rp 275.000)">2180 Diamonds - Rp 275.000</option>
+                    <option value="3640 Diamonds (Rp 455.000)">3640 Diamonds - Rp 455.000</option>
+                    <option value="7290 Diamonds (Rp 905.000)">7290 Diamonds - Rp 905.000</option>
+                    <option value="Member Mingguan (Rp 30.000)">Member Mingguan - Rp 30.000</option>
+                    <option value="Member Bulanan (Rp 149.000)">Member Bulanan - Rp 149.000</option>
+                </select>
+            </div>
+            <div class="input-grup"><label>Pilih Pembayaran (Pay)</label><select id="pay_ff"><option value="DANA">DANA</option><option value="GOPAY">GOPAY</option><option value="OVO">OVO</option><option value="ShopeePay">ShopeePay</option><option value="QRIS">QRIS</option></select></div>
+            <button class="tombol-order" onclick="kirimOrder('Free Fire', 'id_ff', 'nominal_ff', 'pay_ff')">🚀 KIRIM ORDERAN</button>
+        </div>
+
+        <div class="form-topup">
+            <h3>👑 MOBILE LEGENDS (SLOT FULL)</h3>
+            <div class="input-grup">
+                <label>User ID & Zone ID</label>
+                <input type="text" id="id_ml" placeholder="Contoh: 12345678 (2134)" required>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Nominal Diamond</label>
+                <select id="nominal_ml">
+                    <option value="Weekly Diamond Pass (Rp 27.500)">Weekly Diamond Pass - Rp 27.500</option>
+                    <option value="3 Diamonds (Rp 1.500)">3 Diamonds - Rp 1.500</option>
+                    <option value="12 Diamonds (Rp 3.500)">12 Diamonds - Rp 3.500</option>
+                    <option value="28 Diamonds (Rp 8.000)">28 Diamonds - Rp 8.000</option>
+                    <option value="59 Diamonds (Rp 16.000)">59 Diamonds - Rp 16.000</option>
+                    <option value="86 Diamonds (Rp 21.000)">86 Diamonds - Rp 21.000</option>
+                    <option value="172 Diamonds (Rp 42.000)">172 Diamonds - Rp 42.000</option>
+                    <option value="257 Diamonds (Rp 62.000)">257 Diamonds - Rp 62.000</option>
+                    <option value="344 Diamonds (Rp 83.000)">344 Diamonds - Rp 83.000</option>
+                    <option value="429 Diamonds (Rp 103.000)">429 Diamonds - Rp 103.000</option>
+                    <option value="514 Diamonds (Rp 124.000)">514 Diamonds - Rp 124.000</option>
+                    <option value="706 Diamonds (Rp 165.000)">706 Diamonds - Rp 165.000</option>
+                    <option value="878 Diamonds (Rp 205.000)">878 Diamonds - Rp 205.000</option>
+                    <option value="1412 Diamonds (Rp 330.000)">1412 Diamonds - Rp 330.000</option>
+                    <option value="2195 Diamonds (Rp 510.000)">2195 Diamonds - Rp 510.000</option>
+                    <option value="3688 Diamonds (Rp 835.000)">3688 Diamonds - Rp 835.000</option>
+                    <option value="5532 Diamonds (Rp 1.240.000)">5532 Diamonds - Rp 1.240.000</option>
+                    <option value="Twilight Pass (Rp 140.000)">Twilight Pass - Rp 140.000</option>
+                </select>
+            </div>
+            <div class="input-grup"><label>Pilih Pembayaran (Pay)</label><select id="pay_ml"><option value="DANA">DANA</option><option value="GOPAY">GOPAY</option><option value="OVO">OVO</option><option value="ShopeePay">ShopeePay</option><option value="QRIS">QRIS</option></select></div>
+            <button class="tombol-order" onclick="kirimOrder('Mobile Legends', 'id_ml', 'nominal_ml', 'pay_ml')">🚀 KIRIM ORDERAN</button>
+        </div>
+
+        <div class="form-topup">
+            <h3>🔫 PUBG MOBILE</h3>
+            <div class="input-grup">
+                <label>User ID Game</label>
+                <input type="number" id="id_pubg" placeholder="Masukkan ID Game" required>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Nominal UC</label>
+                <select id="nominal_pubg">
+                    <option value="30 UC (Rp 7.000)">30 UC - Rp 7.000</option>
+                    <option value="60 UC (Rp 14.000)">60 UC - Rp 14.000</option>
+                    <option value="180 UC (Rp 40.000)">180 UC - Rp 40.000</option>
+                    <option value="325 UC (Rp 68.000)">325 UC - Rp 68.000</option>
+                    <option value="660 UC (Rp 135.000)">660 UC - Rp 135.000</option>
+                    <option value="1800 UC (Rp 335.000)">1800 UC - Rp 335.000</option>
+                    <option value="3850 UC (Rp 675.000)">3850 UC - Rp 675.000</option>
+                    <option value="8100 UC (Rp 1.340.000)">8100 UC - Rp 1.340.000</option>
+                </select>
+            </div>
+            <div class="input-grup"><label>Pilih Pembayaran (Pay)</label><select id="pay_pubg"><option value="DANA">DANA</option><option value="GOPAY">GOPAY</option><option value="OVO">OVO</option><option value="ShopeePay">ShopeePay</option><option value="QRIS">QRIS</option></select></div>
+            <button class="tombol-order" onclick="kirimOrder('PUBG Mobile', 'id_pubg', 'nominal_pubg', 'pay_pubg')">🚀 KIRIM ORDERAN</button>
+        </div>
+
+        <div class="form-topup">
+            <h3>🛡️ HONOR OF KINGS</h3>
+            <div class="input-grup">
+                <label>User ID Game</label>
+                <input type="text" id="id_hok" placeholder="Masukkan ID Game" required>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Nominal Tokens</label>
+                <select id="nominal_hok">
+                    <option value="17 Tokens (Rp 4.000)">17 Tokens - Rp 4.000</option>
+                    <option value="88 Tokens (Rp 18.000)">88 Tokens - Rp 18.000</option>
+                    <option value="252 Tokens (Rp 51.000)">252 Tokens - Rp 51.000</option>
+                    <option value="432 Tokens (Rp 85.000)">432 Tokens - Rp 85.000</option>
+                    <option value="872 Tokens (Rp 170.000)">872 Tokens - Rp 170.000</option>
+                    <option value="1232 Tokens (Rp 240.000)">1232 Tokens - Rp 240.000</option>
+                    <option value="2464 Tokens (Rp 475.000)">2464 Tokens - Rp 475.000</option>
+                    <option value="4320 Tokens (Rp 830.000)">4320 Tokens - Rp 830.000</option>
+                </select>
+            </div>
+            <div class="input-grup"><label>Pilih Pembayaran (Pay)</label><select id="pay_hok"><option value="DANA">DANA</option><option value="GOPAY">GOPAY</option><option value="OVO">OVO</option><option value="ShopeePay">ShopeePay</option><option value="QRIS">QRIS</option></select></div>
+            <button class="tombol-order" onclick="kirimOrder('Honor of Kings', 'id_hok', 'nominal_hok', 'pay_hok')">🚀 KIRIM ORDERAN</button>
+        </div>
+
+        <div class="form-topup">
+            <h3>✨ GENSHIN IMPACT</h3>
+            <div class="input-grup">
+                <label>UID & Server</label>
+                <input type="text" id="id_genshin" placeholder="Contoh: 123456789 (Asia)" required>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Nominal</label>
+                <select id="nominal_genshin">
+                    <option value="Welkin Moon (Rp 75.000)">Blessing of the Welkin Moon - Rp 75.000</option>
+                    <option value="60 Crystals (Rp 14.000)">60 Genesis Crystals - Rp 14.000</option>
+                    <option value="300 Crystals (Rp 69.000)">300 Genesis Crystals - Rp 69.000</option>
+                    <option value="980 Crystals (Rp 210.000)">980 Genesis Crystals - Rp 210.000</option>
+                    <option value="1980 Crystals (Rp 415.000)">1980 Genesis Crystals - Rp 415.000</option>
+                    <option value="3280 Crystals (Rp 680.000)">3280 Genesis Crystals - Rp 680.000</option>
+                    <option value="6480 Crystals (Rp 1.320.000)">6480 Genesis Crystals - Rp 1.320.000</option>
+                </select>
+            </div>
+            <div class="input-grup"><label>Pilih Pembayaran (Pay)</label><select id="pay_genshin"><option value="DANA">DANA</option><option value="GOPAY">GOPAY</option><option value="OVO">OVO</option><option value="ShopeePay">ShopeePay</option><option value="QRIS">QRIS</option></select></div>
+            <button class="tombol-order" onclick="kirimOrder('Genshin Impact', 'id_genshin', 'nominal_genshin', 'pay_genshin')">🚀 KIRIM ORDERAN</button>
+        </div>
+
+        <div class="form-topup">
+            <h3>⚽ EFOOTBALL / PES</h3>
+            <div class="input-grup">
+                <label>ID Pengguna (Konami ID / Email)</label>
+                <input type="text" id="id_efootball" placeholder="Masukkan ID atau Email Game" required>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Nominal Koin</label>
+                <select id="nominal_efootball">
+                    <option value="100 Coins (Rp 15.000)">100 MyClub Coins - Rp 15.000</option>
+                    <option value="500 Coins (Rp 68.000)">500 MyClub Coins - Rp 68.000</option>
+                    <option value="1000 Coins (Rp 135.000)">1000 MyClub Coins - Rp 135.000</option>
+                    <option value="2100 Coins (Rp 270.000)">2100 MyClub Coins - Rp 270.000</option>
+                    <option value="3400 Coins (Rp 430.000)">3400 MyClub Coins - Rp 430.000</option>
+                    <option value="5700 Coins (Rp 720.000)">5700 MyClub Coins - Rp 720.000</option>
+                </select>
+            </div>
+            <div class="input-grup"><label>Pilih Pembayaran (Pay)</label><select id="pay_efootball"><option value="DANA">DANA</option><option value="GOPAY">GOPAY</option><option value="OVO">OVO</option><option value="ShopeePay">ShopeePay</option><option value="QRIS">QRIS</option></select></div>
+            <button class="tombol-order" onclick="kirimOrder('eFootball', 'id_efootball', 'nominal_efootball', 'pay_efootball')">🚀 KIRIM ORDERAN</button>
+        </div>
+
+        <div class="form-topup">
+            <h3>🎯 VALORANT POINTS</h3>
+            <div class="input-grup">
+                <label>Riot ID + Tagline</label>
+                <input type="text" id="id_val" placeholder="Contoh: ZarrStore #ID1" required>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Nominal Points</label>
+                <select id="nominal_val">
+                    <option value="125 VP (Rp 15.000)">125 Valorant Points - Rp 15.000</option>
+                    <option value="375 VP (Rp 43.000)">375 Valorant Points - Rp 43.000</option>
+                    <option value="790 VP (Rp 85.000)">790 Valorant Points - Rp 85.000</option>
+                    <option value="1650 VP (Rp 170.000)">1650 Valorant Points - Rp 170.000</option>
+                    <option value="2850 VP (Rp 285.000)">2850 Valorant Points - Rp 285.000</option>
+                    <option value="5450 VP (Rp 530.000)">5450 Valorant Points - Rp 530.000</option>
+                </select>
+            </div>
+            <div class="input-grup"><label>Pilih Pembayaran (Pay)</label><select id="pay_val"><option value="DANA">DANA</option><option value="GOPAY">GOPAY</option><option value="OVO">OVO</option><option value="ShopeePay">ShopeePay</option><option value="QRIS">QRIS</option></select></div>
+            <button class="tombol-order" onclick="kirimOrder('Valorant', 'id_val', 'nominal_val', 'pay_val')">🚀 KIRIM ORDERAN</button>
+        </div>
+
+        <div class="form-topup">
+            <h3>🤖 ROBLOX (ROBUX)</h3>
+            <div class="input-grup">
+                <label>Username Roblox</label>
+                <input type="text" id="id_roblox" placeholder="Masukkan Username" required>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Nominal Robux</label>
+                <select id="nominal_roblox">
+                    <option value="40 Robux (Rp 8.000)">40 Robux - Rp 8.000</option>
+                    <option value="80 Robux (Rp 15.000)">80 Robux - Rp 15.000</option>
+                    <option value="400 Robux (Rp 72.000)">400 Robux - Rp 72.000</option>
+                    <option value="800 Robux (Rp 140.000)">800 Robux - Rp 140.000</option>
+                    <option value="1700 Robux (Rp 290.000)">1700 Robux - Rp 290.000</option>
+                    <option value="4500 Robux (Rp 760.000)">4500 Robux - Rp 760.000</option>
+                </select>
+            </div>
+            <div class="input-grup"><label>Pilih Pembayaran (Pay)</label><select id="pay_roblox"><option value="DANA">DANA</option><option value="GOPAY">GOPAY</option><option value="OVO">OVO</option><option value="ShopeePay">ShopeePay</option><option value="QRIS">QRIS</option></select></div>
+            <button class="tombol-order" onclick="kirimOrder('Roblox', 'id_roblox', 'nominal_roblox', 'pay_roblox')">🚀 KIRIM ORDERAN</button>
+        </div>
+
+        <div class="form-topup">
+            <h3>🪙 CRYPTO ASSET (USDT / BTC / ALTCOINS)</h3>
+            <div class="input-grup">
+                <label>Alamat Wallet Pembeli</label>
+                <input type="text" id="id_crypto" placeholder="Masukkan Alamat Wallet Anda" required>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Jaringan / Network Chain</label>
+                <select id="net_crypto">
+                    <option value="TRC20 (Tron Network)">TRC20 (Tron Network)</option>
+                    <option value="BEP20 (BNB Smart Chain)">BEP20 (BNB Smart Chain)</option>
+                    <option value="ERC20 (Ethereum Network)">ERC20 (Ethereum Network)</option>
+                    <option value="TON (The Open Network)">TON Network (Wallet Telegram)</option>
+                    <option value="SOLANA Network">Solana Network</option>
+                </select>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Koin & Nominal Pembelian</label>
+                <select id="nominal_crypto">
+                    <option value="5 USDT (Rp 85.000)">🪙 5 USDT - Rp 85.000</option>
+                    <option value="10 USDT (Rp 168.000)">🪙 10 USDT - Rp 168.000</option>
+                    <option value="25 USDT (Rp 418.000)">🪙 25 USDT - Rp 418.000</option>
+                    <option value="50 USDT (Rp 835.000)">🪙 50 USDT - Rp 835.000</option>
+                    <option value="100 USDT (Rp 1.660.000)">🪙 100 USDT - Rp 1.660.000</option>
+                    <option value="0.0005 BTC (Rp 550.000)">🔶 0.0005 BTC - Rp 550.000</option>
+                    <option value="0.001 BTC (Rp 1.100.000)">🔶 0.001 BTC - Rp 1.100.000</option>
+                    <option value="0.01 ETH (Rp 580.000)">🔷 0.01 ETH - Rp 580.000</option>
+                    <option value="1 SOL (Rp 2.600.000)">☀️ 1 SOL - Rp 2.600.000</option>
+                    <option value="10 TON (Rp 1.200.000)">💎 10 TON Coin - Rp 1.200.000</option>
+                </select>
+            </div>
+            <div class="input-grup"><label>Pilih Pembayaran (Pay)</label><select id="pay_crypto"><option value="DANA">DANA</option><option value="GOPAY">GOPAY</option><option value="OVO">OVO</option><option value="ShopeePay">ShopeePay</option><option value="QRIS">QRIS</option></select></div>
+            <button class="tombol-order" onclick="kirimOrderCrypto()">🚀 KIRIM ORDERAN</button>
+        </div>
+
+        <div class="form-topup">
+            <h3>📱 TOP UP E-WALLET (SALDO)</h3>
+            <div class="input-grup">
+                <label>Nomor HP Akun E-Wallet</label>
+                <input type="number" id="id_ewallet" placeholder="Contoh: 08123456xxx" required>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Jenis E-Wallet</label>
+                <select id="jenis_ewallet">
+                    <option value="DANA">🟢 DANA</option>
+                    <option value="GOPAY">🟢 GOPAY</option>
+                    <option value="OVO">💜 OVO</option>
+                    <option value="ShopeePay">🧡 ShopeePay</option>
+                    <option value="LinkAja">🔴 LinkAja</option>
+                </select>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Nominal Saldo</label>
+                <select id="nominal_ewallet">
+                    <option value="Saldo Rp 10.000 (Harga: Rp 11.500)">Saldo Rp 10.000 - Rp 11.500</option>
+                    <option value="Saldo Rp 20.000 (Harga: Rp 21.500)">Saldo Rp 20.000 - Rp 21.500</option>
+                    <option value="Saldo Rp 25.000 (Harga: Rp 26.500)">Saldo Rp 25.000 - Rp 26.500</option>
+                    <option value="Saldo Rp 30.000 (Harga: Rp 31.500)">Saldo Rp 30.000 - Rp 31.500</option>
+                    <option value="Saldo Rp 50.000 (Harga: Rp 51.500)">Saldo Rp 50.000 - Rp 51.500</option>
+                    <option value="Saldo Rp 100.000 (Harga: Rp 101.500)">Saldo Rp 100.000 - Rp 101.500</option>
+                    <option value="Saldo Rp 150.000 (Harga: Rp 151.500)">Saldo Rp 150.000 - Rp 151.500</option>
+                    <option value="Saldo Rp 200.000 (Harga: Rp 201.500)">Saldo Rp 200.000 - Rp 201.500</option>
+                    <option value="Saldo Rp 300.000 (Harga: Rp 301.500)">Saldo Rp 300.000 - Rp 301.500</option>
+                    <option value="Saldo Rp 500.000 (Harga: Rp 501.500)">Saldo Rp 500.000 - Rp 501.500</option>
+                    <option value="Saldo Rp 1.000.000 (Harga: Rp 1.002.000)">Saldo Rp 1.000.000 - Rp 1.002.000</option>
+                </select>
+            </div>
+            <div class="input-grup">
+                <label>Pilih Pembayaran (Pay)</label>
+                <select id="pay_ewallet">
+                    <option value="QRIS">QRIS (Otomatis)</option>
+                    <option value="DANA">DANA</option>
+                    <option value="GOPAY">GOPAY</option>
+                    <option value="OVO">OVO</option>
+                </select>
+            </div>
+            <button class="tombol-order" onclick="kirimOrderEwallet()">🚀 KIRIM ORDERAN</button>
+        </div>
+
+    </div>
+
+    <script>
+        const nomorWA = "6281396568291"; 
+
+        function kirimOrder(namaGame, idInput, nominalInput, payInput) {
+            const idGame = document.getElementById(idInput).value;
+            const nominal = document.getElementById(nominalInput).value;
+            const pembayaran = document.getElementById(payInput).value;
+            
+            if(idGame == "") {
+                alert("Isi data ID Game dulu, bro!");
+                return;
+            }
+            
+            const teks = `Halo ZARR STORE, Saya mau order!\n\n🎮 *Produk:* ${namaGame}\n🆔 *Tujuan/ID:* ${idGame}\n💎 *Nominal:* ${nominal}\n💳 *Metode Pembayaran:* ${pembayaran}\n\nMohon diproses ya min!`;
+            const linkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teks)}`;
+            window.open(linkWA, '_blank');
+        }
+
+        function kirimOrderCrypto() {
+            const wallet = document.getElementById('id_crypto').value;
+            const jaringan = document.getElementById('net_crypto').value;
+            const nominal = document.getElementById('nominal_crypto').value;
+            const pembayaran = document.getElementById('pay_crypto').value;
+            
+            if(wallet == "") {
+                alert("Isi alamat wallet crypto dulu, bro!");
+                return;
+            }
+            
+            const teksCrypto = `Halo ZARR STORE, Saya mau beli Crypto!\n\n🪙 *Produk:* Crypto Asset\n🌐 *Jaringan/Network:* ${jaringan}\n📂 *Alamat Wallet:* ${wallet}\n💎 *Nominal:* ${nominal}\n💳 *Metode Pembayaran:* ${pembayaran}\n\nMohon segera diproses ya min!`;
+            const linkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teksCrypto)}`;
+            window.open(linkWA, '_blank');
+        }
+
+        // Fungsi khusus rekap e-wallet biar infonya detail ke WA lu
+        function kirimOrderEwallet() {
+            const noHp = document.getElementById('id_ewallet').value;
+            const jenis = document.getElementById('jenis_ewallet').value;
+            const nominal = document.getElementById('nominal_ewallet').value;
+            const pembayaran = document.getElementById('pay_ewallet').value;
+            
+            if(noHp == "") {
+                alert("Isi Nomor HP E-Wallet dulu, bro!");
+                return;
+            }
+            
+            const teksEwallet = `Halo ZARR STORE, Saya mau Top Up Saldo!\n\n📱 *Layanan:* E-Wallet (${jenis})\n📞 *No HP Akun:* ${noHp}\n💵 *Nominal & Harga:* ${nominal}\n💳 *Metode Pembayaran:* ${pembayaran}\n\nMohon segera diisi saldonya min!`;
+            const linkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teksEwallet)}`;
+            window.open(linkWA, '_blank');
+        }
+    </script>
+
+</body>
+</html>
