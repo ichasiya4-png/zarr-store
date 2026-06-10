@@ -6,11 +6,9 @@
     <title>CORE YIELD</title>
     <style>
         body { font-family: sans-serif; background-color: #121212; color: white; padding: 20px; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; box-sizing: border-box; }
-        button { width: 100%; padding: 15px; background-color: #3498db; border: none; color: white; border-radius: 5px; font-weight: bold; cursor: pointer; margin-bottom: 20px;}
-        #tabelSimulasi { width: 100%; margin-top: 20px; border-collapse: collapse; display: none; }
-        th, td { border: 1px solid #333; padding: 8px; text-align: center; }
-        h2 { text-align: center; color: #3498db; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background-color: #3498db; border: none; color: white; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        #hasil { margin-top: 20px; text-align: center; font-size: 1.3em; color: #3498db; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -20,11 +18,8 @@
     <input type="number" id="profit" placeholder="Profit per Periode (%)">
     <input type="number" id="periode" placeholder="Jumlah Periode">
     <button onclick="hitung()">Hitung Hasil Akhir</button>
+
     <div id="hasil"></div>
-    <table id="tabelSimulasi">
-        <thead><tr><th>Periode</th><th>Modal Akhir</th></tr></thead>
-        <tbody id="isiTabel"></tbody>
-    </table>
 
     <audio id="myAudio" loop>
         <source src="ssstik.io_1781056629498.mp3" type="audio/mpeg">
@@ -35,16 +30,24 @@
             let modal = parseFloat(document.getElementById('modal').value);
             let profit = parseFloat(document.getElementById('profit').value) / 100;
             let periode = parseInt(document.getElementById('periode').value);
-            let isiTabel = document.getElementById('isiTabel');
-            document.getElementById('tabelSimulasi').style.display = "table";
-            isiTabel.innerHTML = "";
-            let currentModal = modal;
-            for (let i = 1; i <= periode; i++) {
-                currentModal += (currentModal * profit);
-                isiTabel.innerHTML += `<tr><td>${i}</td><td>Rp ${currentModal.toLocaleString('id-ID')}</td></tr>`;
+            
+            if (!modal || !profit || !periode) {
+                alert("Mohon isi semua kolom!");
+                return;
             }
-            document.getElementById('hasil').innerHTML = `<h3 style="text-align:center;">Total: Rp ${currentModal.toLocaleString('id-ID')}</h3>`;
+
+            let hasilAkhir = modal * Math.pow((1 + profit), periode);
+            
+            let hasilFormat = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                maximumFractionDigits: 0
+            }).format(hasilAkhir);
+
+            document.getElementById('hasil').innerHTML = "Total Akhir: " + hasilFormat;
         }
+
+        // Script agar musik main setelah layar disentuh pertama kali
         document.body.addEventListener('click', function() {
             document.getElementById("myAudio").play();
         }, { once: true });
