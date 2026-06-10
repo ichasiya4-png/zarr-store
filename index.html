@@ -1,62 +1,53 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compound Interest Calculator</title>
+    <title>CORE YIELD</title>
     <style>
-        /* CSS ini yang bikin web kamu punya warna dan tata letak */
-        body { background: #0b0e14; color: #fff; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .card { background: #18191f; padding: 25px; border-radius: 20px; width: 100%; max-width: 400px; border: 1px solid #2f3036; }
-        h2 { text-align: center; color: #55b7f5; margin-bottom: 25px; }
-        label { display: block; margin: 15px 0 5px; font-size: 0.9rem; color: #aaa; }
-        input { width: 100%; padding: 12px; background: #0b0e14; border: 1px solid #333; border-radius: 10px; color: white; box-sizing: border-box; }
-        button { width: 100%; padding: 15px; margin-top: 25px; background: #55b7f5; border: none; border-radius: 10px; color: white; font-weight: bold; cursor: pointer; }
-        #hasil { margin-top: 25px; padding: 20px; background: #0b0e14; border-radius: 15px; text-align: center; border: 1px solid #55b7f5; display: none; }
+        body { font-family: sans-serif; background-color: #121212; color: white; padding: 20px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background-color: #3498db; border: none; color: white; border-radius: 5px; font-weight: bold; cursor: pointer; margin-bottom: 20px;}
+        #tabelSimulasi { width: 100%; margin-top: 20px; border-collapse: collapse; display: none; }
+        th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+        h2 { text-align: center; color: #3498db; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>Compound Interest</h2>
-    
-    <label>Modal Awal (Rp):</label>
-    <input type="text" id="modal" placeholder="2.500.000" oninput="formatRupiah(this)">
-    
-    <label>Profit per Periode (%):</label>
-    <input type="number" id="persen" placeholder="10">
-    
-    <label>Jumlah Periode:</label>
-    <input type="number" id="periode" placeholder="5">
-    
+    <h2>CORE YIELD</h2>
+    <input type="number" id="modal" placeholder="Modal Awal (Rp)">
+    <input type="number" id="profit" placeholder="Profit per Periode (%)">
+    <input type="number" id="periode" placeholder="Jumlah Periode">
     <button onclick="hitung()">Hitung Hasil Akhir</button>
+    <div id="hasil"></div>
+    <table id="tabelSimulasi">
+        <thead><tr><th>Periode</th><th>Modal Akhir</th></tr></thead>
+        <tbody id="isiTabel"></tbody>
+    </table>
 
-    <div id="hasil">
-        <small style="color:#aaa;">Estimasi Hasil Akhir:</small>
-        <h3 id="angka-hasil" style="margin: 10px 0 0 0; color: #55b7f5;">Rp 0</h3>
-    </div>
-</div>
+    <audio id="myAudio" loop>
+        <source src="ssstik.io_1781056629498.mp3" type="audio/mpeg">
+    </audio>
 
-<script>
-    function formatRupiah(input) {
-        let value = input.value.replace(/[^0-9]/g, '');
-        input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
-
-    function hitung() {
-        let modal = parseFloat(document.getElementById('modal').value.replace(/\./g, ''));
-        let persen = parseFloat(document.getElementById('persen').value) / 100;
-        let periode = parseInt(document.getElementById('periode').value);
-        
-        if (!isNaN(modal) && !isNaN(persen) && !isNaN(periode)) {
-            let total = modal * Math.pow((1 + persen), periode);
-            document.getElementById('angka-hasil').innerText = "Rp " + total.toLocaleString('id-ID');
-            document.getElementById('hasil').style.display = "block";
-        } else {
-            alert("Harap isi semua kolom dengan angka!");
+    <script>
+        function hitung() {
+            let modal = parseFloat(document.getElementById('modal').value);
+            let profit = parseFloat(document.getElementById('profit').value) / 100;
+            let periode = parseInt(document.getElementById('periode').value);
+            let isiTabel = document.getElementById('isiTabel');
+            document.getElementById('tabelSimulasi').style.display = "table";
+            isiTabel.innerHTML = "";
+            let currentModal = modal;
+            for (let i = 1; i <= periode; i++) {
+                currentModal += (currentModal * profit);
+                isiTabel.innerHTML += `<tr><td>${i}</td><td>Rp ${currentModal.toLocaleString('id-ID')}</td></tr>`;
+            }
+            document.getElementById('hasil').innerHTML = `<h3 style="text-align:center;">Total: Rp ${currentModal.toLocaleString('id-ID')}</h3>`;
         }
-    }
-</script>
-
+        document.body.addEventListener('click', function() {
+            document.getElementById("myAudio").play();
+        }, { once: true });
+    </script>
 </body>
 </html>
