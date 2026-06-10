@@ -1,1 +1,62 @@
-qN5kGmQE+j4WZfhYZqdYCmv7LzJ9BIpqNcW72JHV/UOn+83y6dAgkXigTfGKIrUxwY2M+pV0c4H1wpkVgR0D8XhyByGBkR/3KZ8YY75k+II=
+.<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Interest Calculator</title>
+    <style>
+        /* CSS ini yang bikin web kamu punya warna dan tata letak */
+        body { background: #0b0e14; color: #fff; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .card { background: #18191f; padding: 25px; border-radius: 20px; width: 100%; max-width: 400px; border: 1px solid #2f3036; }
+        h2 { text-align: center; color: #55b7f5; margin-bottom: 25px; }
+        label { display: block; margin: 15px 0 5px; font-size: 0.9rem; color: #aaa; }
+        input { width: 100%; padding: 12px; background: #0b0e14; border: 1px solid #333; border-radius: 10px; color: white; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; margin-top: 25px; background: #55b7f5; border: none; border-radius: 10px; color: white; font-weight: bold; cursor: pointer; }
+        #hasil { margin-top: 25px; padding: 20px; background: #0b0e14; border-radius: 15px; text-align: center; border: 1px solid #55b7f5; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Compound Interest</h2>
+    
+    <label>Modal Awal (Rp):</label>
+    <input type="text" id="modal" placeholder="2.500.000" oninput="formatRupiah(this)">
+    
+    <label>Profit per Periode (%):</label>
+    <input type="number" id="persen" placeholder="10">
+    
+    <label>Jumlah Periode:</label>
+    <input type="number" id="periode" placeholder="5">
+    
+    <button onclick="hitung()">Hitung Hasil Akhir</button>
+
+    <div id="hasil">
+        <small style="color:#aaa;">Estimasi Hasil Akhir:</small>
+        <h3 id="angka-hasil" style="margin: 10px 0 0 0; color: #55b7f5;">Rp 0</h3>
+    </div>
+</div>
+
+<script>
+    function formatRupiah(input) {
+        let value = input.value.replace(/[^0-9]/g, '');
+        input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function hitung() {
+        let modal = parseFloat(document.getElementById('modal').value.replace(/\./g, ''));
+        let persen = parseFloat(document.getElementById('persen').value) / 100;
+        let periode = parseInt(document.getElementById('periode').value);
+        
+        if (!isNaN(modal) && !isNaN(persen) && !isNaN(periode)) {
+            let total = modal * Math.pow((1 + persen), periode);
+            document.getElementById('angka-hasil').innerText = "Rp " + total.toLocaleString('id-ID');
+            document.getElementById('hasil').style.display = "block";
+        } else {
+            alert("Harap isi semua kolom dengan angka!");
+        }
+    }
+</script>
+
+</body>
+</html>
