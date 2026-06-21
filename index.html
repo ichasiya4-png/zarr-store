@@ -3,62 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZARR COMP-CALC</title>
+    <title>Core Yield - Calculator with Music</title>
     <style>
-        :root { --accent: #38bdf8; }
-        body { background: #050505; color: #fff; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 10px; }
-        .card { background: #111; border-radius: 16px; padding: 25px; border: 1px solid var(--accent); width: 100%; max-width: 350px; box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
-        .header { font-size: 1.1rem; font-weight: bold; color: var(--accent); margin-bottom: 20px; text-align: center; }
-        input { width: 100%; padding: 15px; margin: 8px 0; border-radius: 10px; border: 1px solid var(--accent); background: #000; color: #fff; box-sizing: border-box; font-size: 1rem; }
-        button { width: 100%; padding: 15px; background: var(--accent); border: none; border-radius: 10px; font-weight: bold; font-size: 1.1rem; color: #000; cursor: pointer; margin-top: 10px; }
-        .result-box { margin-top: 25px; text-align: center; border-top: 1px solid #333; padding-top: 20px; }
-        .value { font-size: 1.4rem; font-weight: bold; color: var(--accent); margin-top: 10px; word-break: break-all; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #0b0c10;
+            border: 2px solid #1f2833;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(69, 162, 232, 0.2);
+        }
+
+        .calculator-box {
+            border: 1px solid #45a2e8;
+            border-radius: 15px;
+            padding: 25px 20px;
+        }
+
+        h2 {
+            color: #45a2e8;
+            text-align: center;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #66fcf1;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #000000;
+            border: 1px solid #45a2e8;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #66fcf1;
+            box-shadow: 0 0 8px rgba(102, 252, 241, 0.4);
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #45a2e8;
+            border: none;
+            border-radius: 10px;
+            color: #000000;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #66fcf1;
+        }
+
+        .result-section {
+            text-align: center;
+            margin-top: 25px;
+            border-top: 1px solid #1f2833;
+            padding-top: 20px;
+        }
+
+        .result-title {
+            font-size: 12px;
+            color: #888888;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .result-value {
+            font-size: 24px;
+            color: #45a2e8;
+            font-weight: bold;
+        }
+
+        /* Gaya Pemutar Musik Tambahan */
+        .audio-container {
+            margin-top: 15px;
+            width: 100%;
+            max-width: 400px;
+            background: #111;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #1f2833;
+            display: flex;
+            justify-content: center;
+        }
+        
+        audio {
+            width: 100%;
+            height: 30px;
+        }
     </style>
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="ssstik.io_1781332515279.mp3" type="audio/mpeg">
-    </audio>
-
-    <div class="card">
-        <div class="header">KALKULATOR COMPOUNDING INTEREST ZARR</div>
+<div class="container">
+    <div class="calculator-box">
+        <h2>Kalkulator Compounding Interest Zarr</h2>
         
-        <input type="text" id="modal" placeholder="Modal Awal (Rp)" oninput="formatRupiah(this)" onfocus="clean(this)">
-        <input type="text" id="persen" placeholder="Profit per Tahun (%)" oninput="formatRupiah(this)" onfocus="clean(this)">
-        <input type="text" id="tahun" placeholder="Jumlah Tahun" oninput="formatRupiah(this)" onfocus="clean(this)">
-        
-        <button onclick="hitung()">HITUNG HASIL</button>
+        <div class="input-group">
+            <label for="principal">Modal Awal (Rp)</label>
+            <input type="text" id="principal" placeholder="Contoh: 100.009" oninput="formatRupiah(this)">
+        </div>
 
-        <div class="result-box">
-            <div style="color: #888; font-size: 0.8rem;">TOTAL ASET AKHIR</div>
-            <div id="result" class="value">Rp 0</div>
+        <div class="input-group">
+            <label for="rate">Bunga Per Periode (%)</label>
+            <input type="number" id="rate" placeholder="Contoh: 15" step="any">
+        </div>
+
+        <div class="input-group">
+            <label for="time">Durasi</label>
+            <input type="number" id="time" placeholder="Contoh: 40">
+        </div>
+
+        <div class="input-group">
+            <label for="period">Satuan Waktu</label>
+            <select id="period">
+                <option value="hari">Hari</option>
+                <option value="bulan">Bulan</option>
+                <option value="tahun">Tahun</option>
+            </select>
+        </div>
+
+        <button onclick="hitungCompound()">Hitung Hasil</button>
+
+        <div class="result-section">
+            <div class="result-title">Total Aset Akhir</div>
+            <div class="result-value" id="display-result">Rp 0</div>
         </div>
     </div>
+</div>
 
-    <script>
-        function formatRupiah(el) {
-            let val = el.value.replace(/[^0-9]/g, '');
-            if (val) el.value = parseInt(val).toLocaleString('id-ID');
+<!-- Pemutar audio kontrol bawaan browser -->
+<div class="audio-container">
+    <audio id="bg-music" loop controls>
+        <source src="musik_kamu.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung pemutar audio.
+    </audio>
+</div>
+
+<script>
+    function formatRupiah(input) {
+        let value = input.value.replace(/[^0-9]/g, '');
+        if (value) {
+            input.value = new Intl.NumberFormat('id-ID').format(value);
+        } else {
+            input.value = '';
         }
-        function clean(el) { el.value = el.value.replace(/\./g, ''); }
+    }
 
-        function hitung() {
-            // Jalankan musik saat tombol diklik
-            let music = document.getElementById('bgMusic');
-            music.play();
+    function hitungCompound() {
+        let rawPrincipal = document.getElementById('principal').value.replace(/\./g, '');
+        let P = parseFloat(rawPrincipal);
+        let r = parseFloat(document.getElementById('rate').value) / 100;
+        let t = parseFloat(document.getElementById('time').value);
 
-            let modal = parseFloat(document.getElementById('modal').value.replace(/\./g, ''));
-            let persen = parseFloat(document.getElementById('persen').value.replace(/\./g, '')) / 100;
-            let tahun = parseInt(document.getElementById('tahun').value.replace(/\./g, ''));
-            
-            if(isNaN(modal) || isNaN(persen) || isNaN(tahun)) return alert("Isi semua data!");
-
-            let total = modal * Math.pow((1 + persen), tahun);
-
-            document.getElementById('result').innerText = 
-                "Rp " + Math.round(total).toLocaleString('id-ID');
+        if (isNaN(P) || isNaN(r) || isNaN(t)) {
+            alert("Harap isi semua kolom dengan angka terlebih dahulu!");
+            return;
         }
-    </script>
+
+        let A = P * Math.pow((1 + r), t);
+        let hasilAkhir = Math.floor(A);
+
+        let formattedResult = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        }).format(hasilAkhir);
+
+        document.getElementById('display-result').innerText = formattedResult;
+
+        // FITUR MUSIK: Musik otomatis menyala/berputar dari awal saat klik hitung
+        let audio = document.getElementById('bg-music');
+        audio.currentTime = 0; // Mengulang trek dari detik ke-0
+        audio.play().catch(error => {
+            console.log("Musik tertahan kebijakan browser, butuh interaksi user pertama kali.");
+        });
+    }
+</script>
+
 </body>
 </html>
